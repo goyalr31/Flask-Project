@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
 
-      <div class="container my-3">
+      <!-- <div class="container my-3">
+        <a href="/addtodo" type="button" class="btn btn-outline-dark btn-sm mx-1">Add Task</button>
+                    
         <h1>Add a Todo</h1>
         <form action="/", method="POST">
             <div class="mb-3">
@@ -14,16 +16,19 @@
             </div>
             <button type="submit" class="btn btn-dark">Submit</button>
           </form>
-      </div>
+      </div> -->
 
       <div class="container my-3 bg-light" >
+        <div class="button">
           <h1>Your Todos</h1>
-              {% if allTodo|length == 0 %}
-              <div class="alert alert-dark" role="alert">
-                No record found !
-              </div>
-              {% else %}
-              <table class="table">
+          <a href="/addTodos" class="btn btn-success m-2">Add Todo</a>
+        </div>
+          {% if allTodo|length == 0 %}
+          <div class="alert alert-dark" role="alert">
+            No record found !
+          </div>
+          {% else %}
+          <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">SNo</th>
@@ -39,7 +44,7 @@
                   <th scope="row">{{loop.index}}</th>
                   <td>{{todo.title}}</td>
                   <td>{{todo.desc}}</td>
-                  <td>{{todo.date_created}}</td>
+                  <td>{{todo.date_created.strftime("%b %d %Y %H:%M:%S")}}</td>
                   <td>
                     <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">Delete</button>
                     <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">Update</button>
@@ -47,8 +52,8 @@
                 </tr>
                 {% endfor %}
                 </tbody>
-              </table>
-              {% endif %}
+          </table>
+          {% endif %}
 
       </div>
 
